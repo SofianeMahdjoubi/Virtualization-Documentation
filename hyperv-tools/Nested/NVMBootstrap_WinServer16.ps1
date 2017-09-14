@@ -267,6 +267,7 @@ if($HostNested.HostNestedSupport) {
 
     Write-Host "Spinning up new instance of VM. If VM of the specified name already exists, then we will Skip Creating VM Step."
     #Spins up VM
+    "select disk 2", "offline disk" | diskpart
     try {New-VM -Name $VMName -MemoryStartupBytes 3GB -Generation 1 -Path "C:\Virtual Machines\$VMName" -ErrorAction SilentlyContinue | Add-VMHardDiskDrive -DiskNumber 2}
     catch {}
     
